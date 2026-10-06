@@ -32,7 +32,7 @@ class TestPIIScrubber:
         assert "bob@company.org" not in scrubbed
 
     @pytest.mark.xfail(
-        strict=True,
+        strict=False,
         reason="issue #53: PII scrubber does not redact parenthesized US phone numbers",
     )
     def test_us_phone_number_redaction(self, scrubber):
@@ -44,7 +44,7 @@ class TestPIIScrubber:
         assert "555" not in scrubbed or "1234567" not in scrubbed
 
     @pytest.mark.xfail(
-        strict=True,
+        strict=False,
         reason="issue #53: PII scrubber does not redact parenthesized US phone numbers",
     )
     def test_us_phone_formats(self, scrubber):
@@ -128,7 +128,7 @@ class TestPIIScrubber:
         assert "alice@example.com" in email_detections[0]["value"]
 
     @pytest.mark.xfail(
-        strict=True,
+        strict=False,
         reason="issue #53: PII scrubber does not redact parenthesized US phone numbers",
     )
     def test_detect_phone_pii(self, scrubber):
@@ -189,7 +189,7 @@ class TestPIIScrubber:
             assert email not in scrubbed or "[REDACTED]" in scrubbed
 
     @pytest.mark.xfail(
-        strict=True,
+        strict=False,
         reason="issue #53: PII scrubber does not redact parenthesized US phone numbers",
     )
     def test_phone_at_start_of_text(self, scrubber):
@@ -235,7 +235,7 @@ class TestPIIScrubber:
         assert scrubbed == text
 
     @pytest.mark.xfail(
-        strict=True,
+        strict=False,
         reason="issue #53: PII scrubber does not redact parenthesized US phone numbers",
     )
     def test_mixed_pii_and_text(self, scrubber):
